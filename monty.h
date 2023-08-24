@@ -71,6 +71,7 @@ int call_function(vars *var, char *opcode);
 void clear_all(vars *var);
 int isNumber(char *string);
 int start_global_vars(vars *var);
+int pint_stack(stack_tt **stack, unsigned int line_number, int mode);
 
 #endif /* MONTY_H */
 

@@ -16,6 +16,7 @@ instruction_t *create_instruction()
 
 	instruction[0].opcode = "pall", instruction[0].f = pall_stack;
 	instruction[1].opcode = "push", instruction[1].f = push_stack;
+	instruction[2].opcode = "pint", instruction[2].f = pint_stack;
 
 	return (instruction);
 }

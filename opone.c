@@ -1,6 +1,28 @@
 #include "monty.h"
 
 /**
+ * pint_stack - Printing last node
+ * @stack: linked list
+ * @line_number: line execution
+ * @mode: number mode
+ * Return: 0 or 1
+ */
+int pint_stack(stack_tt **stack,
+			   unsigned int line_number,
+			   __attribute__((unused)) int mode)
+{
+	if (!*stack)
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+
+		return (EXIT_FAILURE);
+	}
+
+	printf("%d\n", (*stack)->n);
+	return (EXIT_SUCCESS);
+}
+
+/**
  * pall_stack - Print stack list
  * @stack: linked list
  * @line_number: File line
