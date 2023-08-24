@@ -22,30 +22,32 @@ instruction_t *create_instruction()
 
 /**
  * clear_all - Clean all mallocs
+ * @var: variable
+ * Return: void
  */
-void clear_all()
+void clear_all(vars *var)
 {
-	if (var.buffer != NULL)
+	if (var->buffer != NULL)
 	{
-		free(var.buffer);
+		free(var->buffer);
 	}
 
-	if (var.file != NULL)
+	if (var->file != NULL)
 	{
-		fclose(var.file);
+		fclose(var->file);
 	}
 
-	free(var.dictionary);
+	free(var->dictionary);
 
-	if (var.head != NULL)
+	if (var->head != NULL)
 	{
-		while (var.head->next != NULL)
+		while (var->head->next != NULL)
 		{
-			var.head = var.head->next;
-			free(var.head->prev);
+			var->head = var->head->next;
+			free(var->head->prev);
 		}
 
-		free(var.head);
+		free(var->head);
 	}
 }
 
@@ -104,8 +106,8 @@ int call_function(vars *var, char *opcode)
 		{
 			if (!var->dictionary[i].f)
 				return (EXIT_SUCCESS);
-			var->dictionary[i].f(&var->head, var->line_number);
-			return (EXIT_SUCCESS);
+
+			return (var->dictionary[i].f(&var->head, var->line_number, var->MODE));
 		}
 	if (strlen(opcode) != 0 && opcode[0] != '#')
 	{

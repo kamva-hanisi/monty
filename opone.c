@@ -4,27 +4,35 @@
  * pall_stack - Print stack list
  * @stack: linked list
  * @line_number: File line
+ * @mode: Global variable Mode
+ * Return: 0 or 1
  */
-void pall_stack(stack_tt **stack, unsigned int line_number)
+int pall_stack(stack_tt **stack,
+			   unsigned int line_number,
+			   __attribute__((unused)) int mode)
 {
 	stack_tt *tmp = *stack;
 	(void)line_number;
 
 	if (!tmp)
-		return;
+		return (EXIT_SUCCESS);
+
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
 	}
+	return (EXIT_SUCCESS);
 }
 
 /**
  * push_stack - Push new value in list
  * @stack: Double linked list
  * @line_number: File line
+ * @mode: Global variable Mode
+ * Return: 0 or 1
  */
-void push_stack(stack_tt **stack, unsigned int line_number)
+int push_stack(stack_tt **stack, unsigned int line_number, int mode)
 {
 	stack_tt *tmp_value = NULL, *tm = *stack;
 	char *num;
@@ -33,8 +41,7 @@ void push_stack(stack_tt **stack, unsigned int line_number)
 	if (num == NULL || (isNumber(num) != 0 && num[0] != '-'))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		clear_all();
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 
 	tmp_value = malloc(sizeof(stack_tt));
@@ -42,13 +49,12 @@ void push_stack(stack_tt **stack, unsigned int line_number)
 	if (!tmp_value)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		clear_all();
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 
 	tmp_value->n = atoi(num);
 
-	if (var.MODE == 0 || !*stack)
+	if (mode == 0 || !*stack)
 	{
 		tmp_value->next = *stack;
 		tmp_value->prev = NULL;
@@ -64,5 +70,7 @@ void push_stack(stack_tt **stack, unsigned int line_number)
 		tmp_value->prev = tm;
 		tmp_value->next = NULL;
 	}
+
+	return (EXIT_SUCCESS);
 }
 

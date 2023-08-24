@@ -1,7 +1,5 @@
 #include "monty.h"
 
-vars var;
-
 /**
  * main - Start program
  * @number_of_arg: Number of arguments
@@ -11,6 +9,7 @@ vars var;
 int main(int number_of_arg, char **av)
 {
 	char *opcode;
+	vars var;
 
 	if (number_of_arg != 2)
 	{
@@ -26,7 +25,7 @@ int main(int number_of_arg, char **av)
 	if (!var.file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-		clear_all();
+		clear_all(&var);
 
 		return (EXIT_FAILURE);
 	}
@@ -37,13 +36,13 @@ int main(int number_of_arg, char **av)
 		if (opcode != NULL)
 			if (call_function(&var, opcode) == EXIT_FAILURE)
 			{
-				clear_all();
+				clear_all(&var);
 				return (EXIT_FAILURE);
 			}
 		var.line_number++;
 	}
 
-	clear_all();
+	clear_all(&var);
 
 	return (EXIT_SUCCESS);
 }
