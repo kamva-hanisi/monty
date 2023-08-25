@@ -20,6 +20,7 @@ instruction_t *create_instruction()
 	instruction[3].opcode = "pop", instruction[3].f = pop_stack;
 	instruction[4].opcode = "swap", instruction[4].f = swap_stack;
 	instruction[5].opcode = "add", instruction[5].f = add_stack;
+	instruction[6].opcode = "nop", instruction[6].f = NULL;
 
 	return (instruction);
 }
