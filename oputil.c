@@ -21,6 +21,7 @@ instruction_t *create_instruction()
 	instruction[4].opcode = "swap", instruction[4].f = swap_stack;
 	instruction[5].opcode = "add", instruction[5].f = add_stack;
 	instruction[6].opcode = "nop", instruction[6].f = NULL;
+	instruction[7].opcode = "sub", instruction[7].f = sub_stack;
 
 	return (instruction);
 }
