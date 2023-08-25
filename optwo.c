@@ -28,6 +28,28 @@ int pop_stack(stack_tt **stack,
 }
 
 /**
+ * add_stack - add the top two elements of the stack
+ * @stack: linked list
+ * @line_number: line execution
+ * @mode: mode number
+ * Return: 0 or 1
+ */
+int add_stack(stack_tt **stack,
+			  unsigned int line_number,
+			  __attribute__((unused)) int mode)
+{
+	if (!*stack || !(*stack)->next)
+	{
+		fprintf(stderr, "L%u: can't add, stack too short\n",
+				line_number);
+		return (EXIT_FAILURE);
+	}
+	(*stack)->next->n = (*stack)->next->n + (*stack)->n;
+	pop_stack(stack, line_number, mode);
+	return (EXIT_SUCCESS);
+}
+
+/**
  * swap_stack - Delete top of stack list
  * @stack: linked list
  * @line_number: line execution
