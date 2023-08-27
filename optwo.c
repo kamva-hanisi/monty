@@ -56,7 +56,7 @@ int add_stack(stack_tt **stack,
  * @mode: mode number
  * Return: 0 or 1
  */
-void sub_stack(stack_tt **stack,
+int sub_stack(stack_tt **stack,
 			   unsigned int line_number,
 			   __attribute__((unused)) int mode)
 {
